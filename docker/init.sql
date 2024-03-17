@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS public.users (
 
 CREATE INDEX idx_item_type ON public.items("type");
 CREATE INDEX idx_bike_manufacturer ON public.bikes("manufacturer");
-CREATE INDEX idx_bike_name ON public.items("name");
+CREATE INDEX idx_bike_name ON public.bikes("name");
 
 
 INSERT INTO public.users (username,"password") VALUES
