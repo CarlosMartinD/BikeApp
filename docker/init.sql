@@ -26,5 +26,7 @@ CREATE TABLE IF NOT EXISTS public.users (
 CREATE INDEX idx_item_type ON public.items("type");
 
 INSERT INTO public.users (username,"password") VALUES
-	 ('carlos','$2a$10$mFB7IaFEG03OhwOog9W1z.G8DRaF.DFG.XIh4HVvqWmhc55M/BUCS'),
-	 ('otro','$2a$10$mFB7IaFEG03OhwOog9W1z.G8DRaF.DFG.XIh4HVvqWmhc55M/BUCS');
+	 ('user2','$2a$10$UnLWzcYjYaHFAfr4qtlPieOZUS32e/w4X0YD7dJOllY3bElDD2v3G'),
+	 ('user1','$2a$10$jOkKWcQlfmbFWr0j6/0qduSXZ2XBvbPHW61NIxvasGrShOxgCf3H6'),
+	 ('user','$2a$10$5vJoGGNHQW/XElUftxhH7.Xr.zOtHTETmIz1BPBANtWeGADx/mASO')
+	 ;
