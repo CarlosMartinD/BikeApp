@@ -25,7 +25,7 @@ class ItemEntityMapperTest {
 
         assertEquals(item.getId(), entity.getId());
         assertEquals(item.getType(), entity.getType());
-        assertEquals(item.getDescription().get(), entity.getDescription());
+        assertEquals(item.getDescription(), entity.getDescription());
         assertEquals(item.getModel(), entity.getModel());
         assertEquals(bikeEntity, entity.getBike());
     }
@@ -42,7 +42,7 @@ class ItemEntityMapperTest {
 
         assertEquals(entity.getId(), item.getId());
         assertEquals(entity.getType(), item.getType());
-        assertEquals(entity.getDescription(), item.getDescription().get());
+        assertEquals(entity.getDescription(), item.getDescription());
         assertEquals(entity.getModel(), item.getModel());
     }
 }
