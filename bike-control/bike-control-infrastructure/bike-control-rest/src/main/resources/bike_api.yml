@@ -1,0 +1,209 @@
+openapi: 3.0.0
+info:
+  title: Bike API
+  description: API for bicycle and component management
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/
+tags:
+  - name: session
+    description: Operations for user session control
+  - name: bike
+    description: Operations related to bike information
+paths:
+  /login:
+    post:
+      operationId: generateJWT
+      tags:
+        - session
+      summary: Log in
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: User name
+                password:
+                  type: string
+                  format: password
+                  description: User password
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JSON Web Token (JWT) for authentication
+  /bike:
+    post:
+      operationId: createBike
+      tags:
+        - bike
+      summary: Create a new bike
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBike'
+      responses:
+        '200':
+          description: Bike created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Bike'
+
+  /bikes:
+    get:
+      operationId: findBikes
+      tags:
+        - bike
+      summary: Search for bikes
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          description: Name of the bike to filter
+        - in: query
+          name: manufacturer
+          schema:
+            type: string
+          description: Manufacturer of the bike to filter
+        - in: query
+          name: itemType
+          schema:
+            type: string
+          description: Type of item to filter
+        - in: query
+          name: direction
+          schema:
+            type: string
+            enum: [ASC, DESC]
+          description: Sorting direction (ascending or descending)
+      responses:
+        '200':
+          description: List of found bikes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Bike'
+
+security:
+  - jwtAuth: []
+components:
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Bike:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Bike ID
+        name:
+          type: string
+          description: Name of the bike
+          minLength: 2
+          maxLength: 50
+        description:
+          type: string
+          description: Capabilities of the bike
+          minLength: 2
+          maxLength: 500
+        price:
+          type: number
+          format: double
+          description: Current price of the bike
+          minimum: 0
+        manufacturer:
+          type: string
+          description: Enterprise that built the bike
+          minLength: 2
+          maxLength: 50
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+
+    CreateBike:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Name of the bike
+          minLength: 2
+          maxLength: 50
+        description:
+          type: string
+          description: Capabilities of the bike
+          minLength: 2
+          maxLength: 500
+        price:
+          type: number
+          format: double
+          description: Current price of the bike
+          minimum: 0
+        manufacturer:
+          type: string
+          description: Enterprise that built the bike
+          minLength: 2
+          maxLength: 50
+        parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemWithoutId'
+    ItemWithoutId:
+      type: object
+      required:
+        - model
+        - type
+      properties:
+        model:
+          type: string
+          description: Model of the item
+          minLength: 2
+          maxLength: 50
+        type:
+          type: string
+          description: Type of the item
+          minLength: 2
+          maxLength: 50
+        description:
+          type: string
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Bike ID
+        model:
+          type: string
+          description: Model of the item
+          minLength: 2
+          maxLength: 50
+        type:
+          type: string
+          description: Type of the item
+          minLength: 2
+          maxLength: 50
+        description:
+          type: string

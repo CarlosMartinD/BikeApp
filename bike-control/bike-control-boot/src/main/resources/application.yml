@@ -1,0 +1,5 @@
+spring:
+  profiles:
+    active: dev,postgre, security
+  redis:
+    port: 7380

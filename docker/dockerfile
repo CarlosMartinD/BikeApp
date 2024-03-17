@@ -1,0 +1,18 @@
+FROM maven:3.8.4-openjdk-17 AS build
+
+COPY ./bike-control /app
+
+WORKDIR /app
+RUN mvn clean install
+
+FROM openjdk:17.0.1
+
+WORKDIR /app
+
+COPY --from=build /app/bike-control-boot/target/bike-control-boot-0.0.1-SNAPSHOT.jar /app/bike-control-boot-0.0.1-SNAPSHOT.jar
+
+RUN ls -l /app
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "bike-control-boot-0.0.1-SNAPSHOT.jar"]

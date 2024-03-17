@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.0</version>
+        <relativePath/>
+    </parent>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.bkool</groupId>
+    <artifactId>bike-control</artifactId>
+    <version>0.1.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>bike-control-boot</module>
+        <module>bike-control-application</module>
+        <module>bike-control-domain</module>
+        <module>bike-control-infrastructure/bike-control-rest</module>
+        <module>bike-control-infrastructure/bike-control-postgre</module>
+        <module>bike-control-infrastructure/bike-control-security</module>
+    </modules>
+
+</project>
