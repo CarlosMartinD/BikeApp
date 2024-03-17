@@ -61,10 +61,12 @@ Para probar la aplicación, se incluyen 3 usuarios de prueba en el sistema. Los 
 | user1   | user1      |
 | user2   | user2      |
 
+Después de obtener el login añade el token en tus llamadas, si utilizas swagger añadelo en el botón authorization.
 
 # Arquitectura hexagonal
 Esta aplicación se basa en una arquitectura hexagonal para mejorar la legibilidad, reusabilidad y escalabilidad del código. La aplicación se encuentra modularizada y las distintas capas de la arquitectura hexagonal se ven representadas en los
 modulos application, domain y los distintos modulos de infraestructura.
 
 ![image](https://github.com/CarlosMartinD/BikeApp/assets/107757538/d22fbcf9-747a-4166-8c35-acafbc8e2c0f)
+
 
